@@ -73,13 +73,17 @@ public class GroupClass {
 
 	// enrolls a new member to this group class. Returns true if the member is enrolled
 	// in this class , false otherwise.
-	/*public boolean enroll(Member member) {
+	public boolean enroll(Member member) throws InvalidInvocationException {
 		if (member == null) {
 			throw new InvalidInvocationException();
-		} else if () {
-
+		} else if (this.members.contains(member)) {
+			return true;
+		} else if (this.members.size() == this.capacity) {
+			return false;
+		} else {
+			return this.members.add(member);
 		}
-	}*/
+	}
 
 	// accessor methods
 	public int getBeginHour() { return this.beginHour; }
