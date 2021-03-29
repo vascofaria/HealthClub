@@ -15,59 +15,83 @@ public class GroupClass {
 	private Boolean golden;
 	private List<Member> members;
 
+
+	// var			cond		type
+	// beginHour	>= 8 * 60	ON		8 * 60	----------
+	//							OFF		------	8 * 60 - 1
+	//				<= 22 * 60	ON		------	----------		22*60
+	//							OFF		------	----------		-----	22 * 60 + 1
+	//				typical		IN		------	----------		-----	----------- 	12 * 60
+	//Expected Result					 T			F			  T 		F				T
+
 	public GroupClass(int startHour, int duration, int capacity, HealthClub club,
 	  int minAge, boolean golden) throws InvalidInvocationException {
 
-		// startHour [08-22]x2 + [0-59]x2
-		if (!(startHour >= 800 && startHour <= 2200 && startHour % 100 < 60)) {
-			throw new InvalidInvocationException();
-		}
-		else if (!(duration > 0)) {
-			throw new InvalidInvocationException();
-		}
-		else if (!(capacity > 5 && capacity < 25)) {
-			throw new InvalidInvocationException();
-		}
-		else if (club == null) {
-			throw new InvalidInvocationException();
-		}
-		else if (!(minAge >= 0 && minAge < 20)) {
-			throw new InvalidInvocationException();
-		} else {
+		if (startHour >= 8 * 60 && startHour <= 22 * 60 &&
+		  duration > 0 &&
+		  capacity > 5 && capacity < 25 &&
+		  club != null &&
+		  minAge >= 0 && minAge < 20) {
+
 			this.beginHour = startHour;
 			this.duration  = duration;
 			this.capacity  = capacity;
 			this.club      = club;
 			this.minAge    = minAge;
 			this.golden    = golden;
-			this.members   = new LinkedList();
+			this.members   = new LinkedList<>();
+
+		} else {
+			throw new InvalidInvocationException();
 		}
 	}
 
+	// var			cond		type
+	// beginHour	>= 8 * 60	ON		8 * 60	----------
+	//							OFF		------	8 * 60 - 1
+	//				<= 22 * 60	ON		------	----------		22*60
+	//							OFF		------	----------		-----	22 * 60 + 1
+	//				typical		IN		------	----------		-----	----------- 	12 * 60
+	//Expected Result					 T			F			  T 		F				T
 	// change begin hour of this class group
 	public void setBeginHour(int beginHour) throws InvalidInvocationException {
-		if (!(beginHour >= 800 && beginHour <= 2200 && beginHour % 100 < 60)) {
-			throw new InvalidInvocationException();
-		} else {
+		if (beginHour >= 8 * 60 && beginHour <= 22 * 60) {
 			this.beginHour = beginHour;
+		} else {
+			throw new InvalidInvocationException();
+
 		}
 	}
 
+	// var			cond		type
+	// minAge		>= 0		ON		0	--
+	//							OFF		-	-1
+	//				< 20		ON		-	--	20
+	//							OFF		-	--	--	19
+	//				typical		IN		-	--	--	-- 	10
+	//Expected Result					T	F	F 	T	T
 	// change minimal age of this group class
 	public void setMinAge(int minAge) throws InvalidInvocationException {
-		if (!(minAge >= 0 && minAge < 20)) {
-			throw new InvalidInvocationException();
-		} else {
+		if (minAge >= 0 && minAge < 20) {
 			this.minAge = minAge;
+		} else {
+			throw new InvalidInvocationException();
+
 		}
 	}
-
+	// var			cond		type
+	// capacity		> 5			ON		5	-
+	//							OFF		-	6
+	//				< 25		ON		-	-	25
+	//							OFF		-	-	--	24
+	//				typical		IN		-	-	--	-- 	10
+	//Expected Result					F	T	F 	T	T
 	// change capacity of this class group
 	public void setCapacity(int capacity) throws InvalidInvocationException {
-		if (!(capacity > 5 && capacity < 25)) {
-			throw new InvalidInvocationException();
-		} else {
+		if (capacity > 5 && capacity < 25) {
 			this.capacity = capacity;
+		} else {
+			throw new InvalidInvocationException();
 		}
 	}
 

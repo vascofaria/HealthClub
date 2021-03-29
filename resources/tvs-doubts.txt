@@ -1,0 +1,3 @@
+método exit do member não existe na descrição, mas existem 2 definições para o leave
+qual é o formato do beginhour e starthour?
+o "between" é inclusive ou exclusive?
