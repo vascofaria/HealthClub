@@ -23,7 +23,11 @@ public class Member {
 
 	private MemberStatus status;
 
-	public Member(String name, HealthClub club, boolean goldenMember) {
+	public Member(String name, HealthClub club, boolean goldenMember) 
+	  throws InvalidOperationException {
+		if (name.equals("") || name == null || club == null) {
+			throw new InvalidOperationException();
+		}
 		this.name = name;
 		this.club = club;
 		this.goldenMember = goldenMember;
@@ -42,7 +46,7 @@ public class Member {
 	}
 
 	// should be invoked when this member leaves the health club
-	public void exit () throws InvalidOperationException {
+	public void exit() throws InvalidOperationException {
 		if (this.atClub && !this.atGroupClass)
 			this.atClub = false;
 		else
@@ -63,7 +67,7 @@ public class Member {
 	}
 
 	// participates in the specified group class if this member is enrolled in the concerned group class
-	public void participate (GroupClass groupClass) throws InvalidOperationException {
+	public void participate(GroupClass groupClass) throws InvalidOperationException {
 		if (this.atClub && !this.atGroupClass && this.enrolledGroupClasses.contains(groupClass))
 			this.atGroupClass = true;
 		else
@@ -72,7 +76,7 @@ public class Member {
 
 	// leaves the current group class where the member is participant. If the member
 	// is not participating in any group class, it does nothing.
-	public void leave () throws InvalidOperationException {
+	public void leave() throws InvalidOperationException {
 		if (atGroupClass)
 			this.atGroupClass = false;
 		else

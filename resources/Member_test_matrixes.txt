@@ -1,0 +1,13 @@
+Member:
+
+ -> ACTIVE
+
+	- IN_CLUB
+
+		
+
+	- OUT_OF_CLUB
+
+ -> INACTIVE
+
+ -> SUSPENDED
