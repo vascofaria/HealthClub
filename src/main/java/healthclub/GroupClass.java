@@ -12,7 +12,7 @@ public class GroupClass {
 	private Integer capacity;
 	private HealthClub club;
 	private Integer minAge;
-	private Boolean golden;
+	private boolean golden;
 	private List<Member> members;
 
 
@@ -26,6 +26,8 @@ public class GroupClass {
 
 	public GroupClass(int startHour, int duration, int capacity, HealthClub club,
 	  int minAge, boolean golden) throws InvalidInvocationException {
+
+		System.out.println("" + startHour + ", " + duration + ", " + capacity + ", " + club + ", " + minAge + ", " + golden);
 
 		if (startHour >= 8 * 60 && startHour <= 22 * 60 &&
 		  duration > 0 &&
@@ -114,6 +116,12 @@ public class GroupClass {
 	public int getDuration()  { return this.duration;  }
 	public int getCapacity()  { return this.capacity;  }
 	public int getMinAge()    { return this.minAge;    }
+	public HealthClub getClub() {
+		return club;
+	}
+	public boolean getGolden() {
+		return golden;
+	}
 
 	// returns the list of members registered for this group class
 	public List<Member> getMembers() { return this.members; }
