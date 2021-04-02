@@ -25,7 +25,7 @@ public class Member {
 
 	public Member(String name, HealthClub club, boolean goldenMember) 
 	  throws InvalidOperationException {
-		if (name.equals("") || name == null || club == null) {
+		if (name == null || name.equals("") || club == null) {
 			throw new InvalidOperationException();
 		}
 		this.name = name;
@@ -56,6 +56,27 @@ public class Member {
 	// returns the name of this member.
 	public String getName() {
 		return this.name;
+	}
+
+	// returns the club of this member.
+	public HealthClub getClub() {
+		return this.club;
+	}
+
+	public boolean isGoldenMember() {
+		return this.goldenMember;
+	}
+
+	public boolean isAtTheClub() {
+		return this.atClub;
+	}
+
+	public boolean isAtGroupClass() {
+		return this.atGroupClass;
+	}
+
+	public MemberStatus getStatus() {
+		return this.status;
 	}
 
 	// returns the list of group classes of this member
@@ -89,7 +110,7 @@ public class Member {
 		if (enrolledGroupClasses.contains(gc)) {
 			return true;
 		} else if (!atGroupClass && this.status == MemberStatus.ACTIVE) {
-			this.enrolledGroupClasses.add(gc);
+			return this.enrolledGroupClasses.add(gc);
 		}
 		return false;
 		// Missing exception throw ?? Dont know if it necessary.

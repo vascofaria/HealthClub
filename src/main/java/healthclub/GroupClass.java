@@ -27,7 +27,7 @@ public class GroupClass {
 	public GroupClass(int startHour, int duration, int capacity, HealthClub club,
 	  int minAge, boolean golden) throws InvalidInvocationException {
 
-		System.out.println("" + startHour + ", " + duration + ", " + capacity + ", " + club + ", " + minAge + ", " + golden);
+		// System.out.println("" + startHour + ", " + duration + ", " + capacity + ", " + club + ", " + minAge + ", " + golden);
 
 		if (startHour >= 8 * 60 && startHour <= 22 * 60 &&
 		  duration > 0 &&
