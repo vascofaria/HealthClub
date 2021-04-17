@@ -16,22 +16,15 @@ public class GroupClass {
 	private List<Member> members;
 
 
-	// var			cond		type
-	// beginHour	>= 8 * 60	ON		8 * 60	----------
-	//							OFF		------	8 * 60 - 1
-	//				<= 22 * 60	ON		------	----------		22*60
-	//							OFF		------	----------		-----	22 * 60 + 1
-	//				typical		IN		------	----------		-----	----------- 	12 * 60
-	//Expected Result					 T			F			  T 		F				T
 
 	public GroupClass(int startHour, int duration, int capacity, HealthClub club,
 	  int minAge, boolean golden) throws InvalidInvocationException {
 
 		// System.out.println("" + startHour + ", " + duration + ", " + capacity + ", " + club + ", " + minAge + ", " + golden);
 
-		if (startHour >= 8 * 60 && startHour <= 22 * 60 &&
+		if (startHour >= 8 && startHour <= 22  &&
 		  duration > 0 &&
-		  capacity > 5 && capacity < 25 &&
+		  capacity >= 5 && capacity <= 25 &&
 		  club != null &&
 		  minAge >= 0 && minAge < 20) {
 
@@ -49,15 +42,15 @@ public class GroupClass {
 	}
 
 	// var			cond		type
-	// beginHour	>= 8 * 60	ON		8 * 60	----------
-	//							OFF		------	8 * 60 - 1
+	// beginHour	>= 8 * 60	ON		8 	----------
+	//							OFF		------	8  - 1
 	//				<= 22 * 60	ON		------	----------		22*60
-	//							OFF		------	----------		-----	22 * 60 + 1
-	//				typical		IN		------	----------		-----	----------- 	12 * 60
+	//							OFF		------	----------		-----	22 + 1
+	//				typical		IN		------	----------		-----	----------- 	12
 	//Expected Result					 T			F			  T 		F				T
 	// change begin hour of this class group
 	public void setBeginHour(int beginHour) throws InvalidInvocationException {
-		if (beginHour >= 8 * 60 && beginHour <= 22 * 60) {
+		if (beginHour >= 8 && beginHour <= 22) {
 			this.beginHour = beginHour;
 		} else {
 			throw new InvalidInvocationException();
@@ -90,7 +83,7 @@ public class GroupClass {
 	//Expected Result					F	T	F 	T	T
 	// change capacity of this class group
 	public void setCapacity(int capacity) throws InvalidInvocationException {
-		if (capacity > 5 && capacity < 25) {
+		if (capacity >= 5 && capacity <= 25) {
 			this.capacity = capacity;
 		} else {
 			throw new InvalidInvocationException();
