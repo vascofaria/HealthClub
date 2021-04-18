@@ -19,9 +19,6 @@ public class GroupClass {
 
 	public GroupClass(int startHour, int duration, int capacity, HealthClub club,
 	  int minAge, boolean golden) throws InvalidInvocationException {
-
-		// System.out.println("" + startHour + ", " + duration + ", " + capacity + ", " + club + ", " + minAge + ", " + golden);
-
 		if (startHour >= 8 && startHour <= 22  &&
 		  duration > 0 &&
 		  capacity >= 5 && capacity <= 25 &&
@@ -41,13 +38,6 @@ public class GroupClass {
 		}
 	}
 
-	// var			cond		type
-	// beginHour	>= 8 * 60	ON		8 	----------
-	//							OFF		------	8  - 1
-	//				<= 22 * 60	ON		------	----------		22*60
-	//							OFF		------	----------		-----	22 + 1
-	//				typical		IN		------	----------		-----	----------- 	12
-	//Expected Result					 T			F			  T 		F				T
 	// change begin hour of this class group
 	public void setBeginHour(int beginHour) throws InvalidInvocationException {
 		if (beginHour >= 8 && beginHour <= 22) {
@@ -58,13 +48,6 @@ public class GroupClass {
 		}
 	}
 
-	// var			cond		type
-	// minAge		>= 0		ON		0	--
-	//							OFF		-	-1
-	//				< 20		ON		-	--	20
-	//							OFF		-	--	--	19
-	//				typical		IN		-	--	--	-- 	10
-	//Expected Result					T	F	F 	T	T
 	// change minimal age of this group class
 	public void setMinAge(int minAge) throws InvalidInvocationException {
 		if (minAge >= 0 && minAge < 20) {
@@ -74,13 +57,7 @@ public class GroupClass {
 
 		}
 	}
-	// var			cond		type
-	// capacity		> 5			ON		5	-
-	//							OFF		-	6
-	//				< 25		ON		-	-	25
-	//							OFF		-	-	--	24
-	//				typical		IN		-	-	--	-- 	10
-	//Expected Result					F	T	F 	T	T
+
 	// change capacity of this class group
 	public void setCapacity(int capacity) throws InvalidInvocationException {
 		if (capacity >= 5 && capacity <= 25) {

@@ -148,7 +148,7 @@ public class MemberTest {
 		// Arrange
 		// Act
 		member = new Member("member1", new HealthClub("club1"), true);
-		GroupClass groupClass = new GroupClass(8 * 60, 2, 7, new HealthClub("club1"), 1, true);
+		GroupClass groupClass = new GroupClass(8, 2, 7, new HealthClub("club1"), 1, true);
 		assertThrows(InvalidOperationException.class,
 			() -> { member.participate(groupClass); });
 		
@@ -250,7 +250,7 @@ public class MemberTest {
 		// Act
 		member = new Member("member1", new HealthClub("club1"), true);
 		member.setActive(true);
-		GroupClass groupClass = new GroupClass(8 * 60, 2, 7, new HealthClub("club1"), 1, true);
+		GroupClass groupClass = new GroupClass(8, 2, 7, new HealthClub("club1"), 1, true);
 		assertThrows(InvalidOperationException.class,
 			() -> { member.participate(groupClass); });
 		
@@ -362,7 +362,7 @@ public class MemberTest {
 		// Arrange
 		// Act
 		member = new Member("member1", new HealthClub("club1"), true);
-		GroupClass groupClass = new GroupClass(8 * 60, 2, 7, new HealthClub("club1"), 1, true);
+		GroupClass groupClass = new GroupClass(8, 2, 7, new HealthClub("club1"), 1, true);
 		member.setActive(false);
 		assertThrows(InvalidOperationException.class,
 			() -> { member.participate(groupClass); });
@@ -472,7 +472,7 @@ public class MemberTest {
 		// Arrange
 		// Act
 		member = new Member("member1", new HealthClub("club1"), true);
-		GroupClass groupClass = new GroupClass(8 * 60, 2, 7, new HealthClub("club1"), 1, true);
+		GroupClass groupClass = new GroupClass(8, 2, 7, new HealthClub("club1"), 1, true);
 		member.setActive(true);
 		member.enter();
 		assertEquals(member.enroll(groupClass), true);
@@ -490,7 +490,7 @@ public class MemberTest {
 		// Arrange
 		// Act
 		member = new Member("member1", new HealthClub("club1"), true);
-		GroupClass groupClass = new GroupClass(8 * 60, 2, 7, new HealthClub("club1"), 1, true);
+		GroupClass groupClass = new GroupClass(8, 2, 7, new HealthClub("club1"), 1, true);
 		member.setActive(true);
 		member.enter();
 		assertThrows(InvalidOperationException.class,
@@ -508,7 +508,7 @@ public class MemberTest {
 		// Arrange
 		// Act
 		member = new Member("member1", new HealthClub("club1"), true);
-		GroupClass groupClass = new GroupClass(8 * 60, 2, 7, new HealthClub("club1"), 1, true);
+		GroupClass groupClass = new GroupClass(8, 2, 7, new HealthClub("club1"), 1, true);
 		member.setActive(true);
 		member.enter();
 		assertThrows(InvalidOperationException.class,
@@ -526,7 +526,7 @@ public class MemberTest {
 		// Arrange
 		// Act
 		member = new Member("member1", new HealthClub("club1"), true);
-		GroupClass groupClass = new GroupClass(8 * 60, 2, 7, new HealthClub("club1"), 1, true);
+		GroupClass groupClass = new GroupClass(8, 2, 7, new HealthClub("club1"), 1, true);
 		member.setActive(true);
 		member.enter();
 		assertEquals(member.enroll(groupClass), true);
@@ -546,7 +546,7 @@ public class MemberTest {
 		// Arrange
 		// Act
 		member = new Member("member1", new HealthClub("club1"), true);
-		GroupClass groupClass = new GroupClass(8 * 60, 2, 7, new HealthClub("club1"), 1, true);
+		GroupClass groupClass = new GroupClass(8, 2, 7, new HealthClub("club1"), 1, true);
 		member.setActive(true);
 		member.enter();
 		assertEquals(member.enroll(groupClass), true);
@@ -566,7 +566,7 @@ public class MemberTest {
 		// Arrange
 		// Act
 		member = new Member("member1", new HealthClub("club1"), true);
-		GroupClass groupClass = new GroupClass(8 * 60, 2, 7, new HealthClub("club1"), 1, true);
+		GroupClass groupClass = new GroupClass(8, 2, 7, new HealthClub("club1"), 1, true);
 		member.setActive(true);
 		member.enter();
 		assertEquals(member.enroll(groupClass), true);
@@ -586,7 +586,7 @@ public class MemberTest {
 		// Arrange
 		// Act
 		member = new Member("member1", new HealthClub("club1"), true);
-		GroupClass groupClass = new GroupClass(8 * 60, 2, 7, new HealthClub("club1"), 1, true);
+		GroupClass groupClass = new GroupClass(8, 2, 7, new HealthClub("club1"), 1, true);
 		member.setActive(true);
 		member.enter();
 		assertEquals(member.enroll(groupClass), true);
@@ -605,7 +605,7 @@ public class MemberTest {
 		// Arrange
 		// Act
 		member = new Member("member1", new HealthClub("club1"), true);
-		GroupClass groupClass = new GroupClass(8 * 60, 2, 7, new HealthClub("club1"), 1, true);
+		GroupClass groupClass = new GroupClass(8, 2, 7, new HealthClub("club1"), 1, true);
 		member.setActive(true);
 		member.enter();
 		assertEquals(member.enroll(groupClass), true);
@@ -626,7 +626,7 @@ public class MemberTest {
 		// Arrange
 		// Act
 		member = new Member("member1", new HealthClub("club1"), true);
-		GroupClass groupClass = new GroupClass(8 * 60, 2, 7, new HealthClub("club1"), 1, true);
+		GroupClass groupClass = new GroupClass(8, 2, 7, new HealthClub("club1"), 1, true);
 		member.setActive(true);
 		member.enter();
 		assertEquals(member.enroll(groupClass), true);
@@ -647,7 +647,7 @@ public class MemberTest {
 		// Arrange
 		// Act
 		member = new Member("member1", new HealthClub("club1"), true);
-		GroupClass groupClass = new GroupClass(8 * 60, 2, 7, new HealthClub("club1"), 1, true);
+		GroupClass groupClass = new GroupClass(8, 2, 7, new HealthClub("club1"), 1, true);
 		member.setActive(true);
 		member.enter();
 		assertEquals(member.enroll(groupClass), true);

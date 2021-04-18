@@ -107,7 +107,7 @@ public class Member {
 	// enrolls in the specified group class . If the member is already enrolled, then it does nothing.
 	// Returns true if the member was is enrolled in the group class , false otherwise.
 	public boolean enroll(GroupClass gc) {
-		if (enrolledGroupClasses.contains(gc)) {
+		if (this.enrolledGroupClasses.contains(gc)) {
 			return true;
 		} else if (!atGroupClass && this.status == MemberStatus.ACTIVE) {
 			return this.enrolledGroupClasses.add(gc);
