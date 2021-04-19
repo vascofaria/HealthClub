@@ -13,6 +13,8 @@ public class Member {
 
 	private boolean goldenMember;
 
+	private int age;
+
 	private boolean atClub;
 
 	private boolean atGroupClass;
@@ -23,14 +25,15 @@ public class Member {
 
 	private MemberStatus status;
 
-	public Member(String name, HealthClub club, boolean goldenMember) 
+	public Member(String name, HealthClub club, boolean goldenMember, int age)
 	  throws InvalidOperationException {
-		if (name == null || name.equals("") || club == null) {
+		if (name == null || name.equals("") || club == null || age < 0) {
 			throw new InvalidOperationException();
 		}
 		this.name = name;
 		this.club = club;
 		this.goldenMember = goldenMember;
+		this.age = age;
 		this.atClub = false;
 		this.atGroupClass = false;
 		this.enrolledGroupClasses = new ArrayList<>();
@@ -141,4 +144,8 @@ public class Member {
 
 	}
 
+
+	public int getAge() {
+		return age;
+	}
 }

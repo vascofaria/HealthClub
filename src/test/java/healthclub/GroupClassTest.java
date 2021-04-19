@@ -3,7 +3,6 @@ package healthclub;
 import healthclub.exceptions.InvalidInvocationException;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
-import org.testng.annotations.DataProvider;
 
 import static org.testng.Assert.*;
 
@@ -31,7 +30,7 @@ public class GroupClassTest {
 		assertEquals(groupClass.getCapacity(), 7);
 		assertSame(groupClass.getClub(), healthClub);
 		assertEquals(groupClass.getMinAge(), 1);
-		assertTrue(groupClass.getGolden());
+		assertTrue(groupClass.isGolden());
 
 	}
 
@@ -65,7 +64,7 @@ public class GroupClassTest {
 		assertEquals(groupClass.getCapacity(), 9);
 		assertSame(groupClass.getClub(), healthClub);
 		assertEquals(groupClass.getMinAge(), 3);
-		assertTrue(groupClass.getGolden());
+		assertTrue(groupClass.isGolden());
 	}
 
 	@Test
@@ -87,7 +86,7 @@ public class GroupClassTest {
 			assertEquals(groupClass.getCapacity(), 8);
 			assertSame(groupClass.getClub(), healthClub);
 			assertEquals(groupClass.getMinAge(), 3);
-			assertTrue(groupClass.getGolden());
+			assertTrue(groupClass.isGolden());
 		}
 	}
 
@@ -120,7 +119,7 @@ public class GroupClassTest {
 		assertEquals(groupClass.getCapacity(), 12);
 		assertSame(groupClass.getClub(), healthClub);
 		assertEquals(groupClass.getMinAge(), 9);
-		assertTrue(groupClass.getGolden());
+		assertTrue(groupClass.isGolden());
 	}
 
 	@Test
@@ -138,7 +137,7 @@ public class GroupClassTest {
 		assertEquals(groupClass.getCapacity(), 5);
 		assertSame(groupClass.getClub(), healthClub);
 		assertEquals(groupClass.getMinAge(), 11);
-		assertTrue(groupClass.getGolden());
+		assertTrue(groupClass.isGolden());
 	}
 
 
@@ -161,7 +160,7 @@ public class GroupClassTest {
 			assertEquals(groupClass.getCapacity(), 20);
 			assertSame(groupClass.getClub(), healthClub);
 			assertEquals(groupClass.getMinAge(), 10);
-			assertTrue(groupClass.getGolden());
+			assertTrue(groupClass.isGolden());
 		}
 	}
 
@@ -182,7 +181,7 @@ public class GroupClassTest {
 		assertEquals(groupClass.getCapacity(), 25);
 		assertSame(groupClass.getClub(), healthClub);
 		assertEquals(groupClass.getMinAge(), 12);
-		assertTrue(groupClass.getGolden());
+		assertTrue(groupClass.isGolden());
 	}
 
 	@Test
@@ -203,7 +202,7 @@ public class GroupClassTest {
 			assertEquals(groupClass.getCapacity(), 15);
 			assertSame(groupClass.getClub(), healthClub);
 			assertEquals(groupClass.getMinAge(), 15);
-			assertTrue(groupClass.getGolden());
+			assertTrue(groupClass.isGolden());
 		}
 	}
 
@@ -236,7 +235,7 @@ public class GroupClassTest {
 		assertEquals(groupClass.getCapacity(), 14);
 		assertSame(groupClass.getClub(), healthClub);
 		assertEquals(groupClass.getMinAge(), 18);
-		assertTrue(groupClass.getGolden());
+		assertTrue(groupClass.isGolden());
 	}
 
 	@Test
@@ -255,7 +254,7 @@ public class GroupClassTest {
 		assertEquals(groupClass.getCapacity(), 15);
 		assertSame(groupClass.getClub(), healthClub);
 		assertEquals(groupClass.getMinAge(), 0);
-		assertTrue(groupClass.getGolden());
+		assertTrue(groupClass.isGolden());
 	}
 
 	@Test
@@ -291,7 +290,7 @@ public class GroupClassTest {
 			assertEquals(groupClass.getCapacity(), 21);
 			assertSame(groupClass.getClub(), healthClub);
 			assertEquals(groupClass.getMinAge(), 19);
-			assertTrue(groupClass.getGolden());
+			assertTrue(groupClass.isGolden());
 		}
 	}
 
@@ -311,6 +310,6 @@ public class GroupClassTest {
 		assertEquals(groupClass.getCapacity(), 22);
 		assertSame(groupClass.getClub(), healthClub);
 		assertEquals(groupClass.getMinAge(), 19);
-		assertTrue(groupClass.getGolden());
+		assertTrue(groupClass.isGolden());
 	}
 }

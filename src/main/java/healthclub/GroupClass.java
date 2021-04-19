@@ -2,6 +2,7 @@ package healthclub;
 
 import java.util.List;
 import java.util.LinkedList;
+import java.util.stream.Collectors;
 
 import healthclub.exceptions.InvalidInvocationException;
 
@@ -70,15 +71,27 @@ public class GroupClass {
 	// enrolls a new member to this group class. Returns true if the member is enrolled
 	// in this class , false otherwise.
 	public boolean enroll(Member member) throws InvalidInvocationException {
-		if (member == null) {
-			throw new InvalidInvocationException();
-		} else if (this.members.contains(member)) {
-			return true;
-		} else if (this.members.size() == this.capacity) {
-			return false;
+		boolean enrolled = false;
+		if (this.members.contains(member)) { return true; }
+
+		if (this.members.size() < this.getCapacity()) {
+			this.members.add(member);
+			enrolled = true;
 		} else {
-			return this.members.add(member);
+			if (this.isGolden()) {
+				List<Boolean> goldUsers = this.members.stream().map(Member::isGoldenMember).collect(Collectors.toList());
+				//if there are silver members enrolled in the group class
+				if (goldUsers.contains(false)) {
+					if (member.isGoldenMember()) {
+						Member memberToRemove = this.members.stream().filter(m -> !m.isGoldenMember()).findAny().get();
+						this.members.remove(memberToRemove);
+						this.members.add(member);
+						enrolled = true;
+					}
+				}
+			}
 		}
+		return enrolled;
 	}
 
 	// accessor methods
@@ -86,12 +99,8 @@ public class GroupClass {
 	public int getDuration()  { return this.duration;  }
 	public int getCapacity()  { return this.capacity;  }
 	public int getMinAge()    { return this.minAge;    }
-	public HealthClub getClub() {
-		return club;
-	}
-	public boolean getGolden() {
-		return golden;
-	}
+	public HealthClub getClub() { return club; }
+	public boolean isGolden() { return golden; }
 
 	// returns the list of members registered for this group class
 	public List<Member> getMembers() { return this.members; }

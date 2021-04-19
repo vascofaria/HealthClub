@@ -45,7 +45,15 @@ public class HealthClub {
 	public void payMembershipCost(Member member) {}
 
 	// computes the monthly membership cost for the specified member
-	// public float computeMembershipCost(Member m) {}
+	/*public float computeMembershipCost(Member m) {
+		if (m.getStatus().equals(Member.MemberStatus.INACTIVE)) {
+			return 0;
+		} else {
+			if (m.getAge() == 0) {
+
+			}
+		}
+	}*/
 
 	// returns the list of members
 	public List<Member> getMembers() {

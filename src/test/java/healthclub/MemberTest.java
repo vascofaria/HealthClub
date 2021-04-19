@@ -2,9 +2,6 @@ package healthclub;
 
 import org.testng.annotations.Test;
 import org.testng.annotations.DataProvider;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import static org.testng.Assert.*;
 
@@ -32,7 +29,7 @@ public class MemberTest {
 	  throws InvalidOperationException, InvalidInvocationException {
 		// Arrange
 		// Act
-		member = new Member(name, club, golden);
+		member = new Member(name, club, golden, 20);
 		// Assert
 		assertEquals(member.getName(), name);
 		assertEquals(member.getClub(), club);
@@ -57,14 +54,14 @@ public class MemberTest {
 		// Arrange
 		// Act && Assert
 		assertThrows(InvalidOperationException.class,
-			() -> { new Member(name, club, golden); });
+			() -> { new Member(name, club, golden, 20); });
 	}
 
 	@BeforeSuite
 	public void initMembers()
 	  throws InvalidOperationException, InvalidInvocationException {
-		this.silverMember = new Member("member1", new HealthClub("club1"), false);
-		this.goldenMember = new Member("member2", new HealthClub("club1"), true);
+		this.silverMember = new Member("member1", new HealthClub("club1"), false, 20);
+		this.goldenMember = new Member("member2", new HealthClub("club1"), true, 20);
 	}
 
 	@Test
@@ -72,7 +69,7 @@ public class MemberTest {
 	  throws InvalidOperationException, InvalidInvocationException {
 		// Arrange
 		// Act
-		member = new Member("member1", new HealthClub("club1"), true);
+		member = new Member("member1", new HealthClub("club1"), true, 20);
 		// Assert
 		assertEquals(member.getStatus(), Member.MemberStatus.SUSPENDED);
 	}
@@ -82,7 +79,7 @@ public class MemberTest {
 	  throws InvalidOperationException, InvalidInvocationException {
 		// Arrange
 		// Act
-		member = new Member("member1", new HealthClub("club1"), true);
+		member = new Member("member1", new HealthClub("club1"), true, 20);
 		member.setActive(true);
 		// Assert
 		assertEquals(member.getStatus(), Member.MemberStatus.ACTIVE);
@@ -94,7 +91,7 @@ public class MemberTest {
 	  throws InvalidOperationException, InvalidInvocationException {
 		// Arrange
 		// Act
-		member = new Member("member1", new HealthClub("club1"), true);
+		member = new Member("member1", new HealthClub("club1"), true, 20);
 		member.setActive(false);
 		// Assert
 		assertEquals(member.getStatus(), Member.MemberStatus.INACTIVE);
@@ -106,7 +103,7 @@ public class MemberTest {
 	  throws InvalidOperationException, InvalidInvocationException {
 		// Arrange
 		// Act
-		member = new Member("member1", new HealthClub("club1"), true);
+		member = new Member("member1", new HealthClub("club1"), true, 20);
 		assertThrows(InvalidOperationException.class,
 			() -> { member.suspend(); });
 		
@@ -120,7 +117,7 @@ public class MemberTest {
 	  throws InvalidOperationException, InvalidInvocationException {
 		// Arrange
 		// Act
-		member = new Member("member1", new HealthClub("club1"), true);
+		member = new Member("member1", new HealthClub("club1"), true, 20);
 		assertThrows(InvalidOperationException.class,
 			() -> { member.enter(); });
 		// Assert
@@ -133,7 +130,7 @@ public class MemberTest {
 	  throws InvalidOperationException, InvalidInvocationException {
 		// Arrange
 		// Act
-		member = new Member("member1", new HealthClub("club1"), true);
+		member = new Member("member1", new HealthClub("club1"), true, 20);
 		assertThrows(InvalidOperationException.class,
 			() -> { member.exit(); });
 		
@@ -147,7 +144,7 @@ public class MemberTest {
 	  throws InvalidOperationException, InvalidInvocationException {
 		// Arrange
 		// Act
-		member = new Member("member1", new HealthClub("club1"), true);
+		member = new Member("member1", new HealthClub("club1"), true, 20);
 		GroupClass groupClass = new GroupClass(8, 2, 7, new HealthClub("club1"), 1, true);
 		assertThrows(InvalidOperationException.class,
 			() -> { member.participate(groupClass); });
@@ -162,7 +159,7 @@ public class MemberTest {
 	  throws InvalidOperationException, InvalidInvocationException {
 		// Arrange
 		// Act
-		member = new Member("member1", new HealthClub("club1"), true);
+		member = new Member("member1", new HealthClub("club1"), true, 20);
 		assertThrows(InvalidOperationException.class,
 			() -> { member.leave(); });
 		
@@ -176,7 +173,7 @@ public class MemberTest {
 	  throws InvalidOperationException, InvalidInvocationException {
 		// Arrange
 		// Act
-		member = new Member("member1", new HealthClub("club1"), true);
+		member = new Member("member1", new HealthClub("club1"), true, 20);
 		member.setActive(true);
 		member.setActive(true);
 		
@@ -190,7 +187,7 @@ public class MemberTest {
 	  throws InvalidOperationException, InvalidInvocationException {
 		// Arrange
 		// Act
-		member = new Member("member1", new HealthClub("club1"), true);
+		member = new Member("member1", new HealthClub("club1"), true, 20);
 		member.setActive(true);
 		member.setActive(false);
 		
@@ -204,7 +201,7 @@ public class MemberTest {
 	  throws InvalidOperationException, InvalidInvocationException {
 		// Arrange
 		// Act
-		member = new Member("member1", new HealthClub("club1"), true);
+		member = new Member("member1", new HealthClub("club1"), true, 20);
 		member.setActive(true);
 		member.suspend();
 		
@@ -218,7 +215,7 @@ public class MemberTest {
 	  throws InvalidOperationException, InvalidInvocationException {
 		// Arrange
 		// Act
-		member = new Member("member1", new HealthClub("club1"), true);
+		member = new Member("member1", new HealthClub("club1"), true, 20);
 		member.setActive(true);
 		assertThrows(InvalidOperationException.class,
 			() -> { member.leave(); });
@@ -233,7 +230,7 @@ public class MemberTest {
 	  throws InvalidOperationException, InvalidInvocationException {
 		// Arrange
 		// Act
-		member = new Member("member1", new HealthClub("club1"), true);
+		member = new Member("member1", new HealthClub("club1"), true, 20);
 		member.setActive(true);
 		assertThrows(InvalidOperationException.class,
 			() -> { member.exit(); });
@@ -248,7 +245,7 @@ public class MemberTest {
 	  throws InvalidOperationException, InvalidInvocationException {
 		// Arrange
 		// Act
-		member = new Member("member1", new HealthClub("club1"), true);
+		member = new Member("member1", new HealthClub("club1"), true, 20);
 		member.setActive(true);
 		GroupClass groupClass = new GroupClass(8, 2, 7, new HealthClub("club1"), 1, true);
 		assertThrows(InvalidOperationException.class,
@@ -264,7 +261,7 @@ public class MemberTest {
 	  throws InvalidOperationException, InvalidInvocationException {
 		// Arrange
 		// Act
-		member = new Member("member1", new HealthClub("club1"), true);
+		member = new Member("member1", new HealthClub("club1"), true, 20);
 		member.setActive(true);
 		member.enter();
 		
@@ -278,7 +275,7 @@ public class MemberTest {
 	  throws InvalidOperationException, InvalidInvocationException {
 		// Arrange
 		// Act
-		member = new Member("member1", new HealthClub("club1"), true);
+		member = new Member("member1", new HealthClub("club1"), true, 20);
 
 		member.setActive(false);
 		member.setActive(true);
@@ -293,7 +290,7 @@ public class MemberTest {
 	  throws InvalidOperationException, InvalidInvocationException {
 		// Arrange
 		// Act
-		member = new Member("member1", new HealthClub("club1"), true);
+		member = new Member("member1", new HealthClub("club1"), true, 20);
 		/*
 		member.setActive(false);
 		assertThrows(InvalidOperationException.class,
@@ -313,7 +310,7 @@ public class MemberTest {
 	  throws InvalidOperationException, InvalidInvocationException {
 		// Arrange
 		// Act
-		member = new Member("member1", new HealthClub("club1"), true);
+		member = new Member("member1", new HealthClub("club1"), true, 20);
 
 		member.setActive(false);
 		assertThrows(InvalidOperationException.class,
@@ -329,7 +326,7 @@ public class MemberTest {
 	  throws InvalidOperationException, InvalidInvocationException {
 		// Arrange
 		// Act
-		member = new Member("member1", new HealthClub("club1"), true);
+		member = new Member("member1", new HealthClub("club1"), true, 20);
 
 		member.setActive(false);
 		assertThrows(InvalidOperationException.class,
@@ -345,7 +342,7 @@ public class MemberTest {
 	  throws InvalidOperationException, InvalidInvocationException {
 		// Arrange
 		// Act
-		member = new Member("member1", new HealthClub("club1"), true);
+		member = new Member("member1", new HealthClub("club1"), true, 20);
 
 		member.setActive(false);
 		assertThrows(InvalidOperationException.class,
@@ -361,7 +358,7 @@ public class MemberTest {
 	  throws InvalidOperationException, InvalidInvocationException {
 		// Arrange
 		// Act
-		member = new Member("member1", new HealthClub("club1"), true);
+		member = new Member("member1", new HealthClub("club1"), true, 20);
 		GroupClass groupClass = new GroupClass(8, 2, 7, new HealthClub("club1"), 1, true);
 		member.setActive(false);
 		assertThrows(InvalidOperationException.class,
@@ -377,7 +374,7 @@ public class MemberTest {
 	  throws InvalidOperationException, InvalidInvocationException {
 		// Arrange
 		// Act
-		member = new Member("member1", new HealthClub("club1"), true);
+		member = new Member("member1", new HealthClub("club1"), true, 20);
 		member.setActive(false);
 		assertThrows(InvalidOperationException.class,
 			() -> { member.enter(); });
@@ -392,7 +389,7 @@ public class MemberTest {
 	  throws InvalidOperationException, InvalidInvocationException {
 		// Arrange
 		// Act
-		member = new Member("member1", new HealthClub("club1"), true);
+		member = new Member("member1", new HealthClub("club1"), true, 20);
 		member.setActive(true);
 		member.enter();
 		assertThrows(InvalidOperationException.class,
@@ -408,7 +405,7 @@ public class MemberTest {
 	  throws InvalidOperationException, InvalidInvocationException {
 		// Arrange
 		// Act
-		member = new Member("member1", new HealthClub("club1"), true);
+		member = new Member("member1", new HealthClub("club1"), true, 20);
 		member.setActive(true);
 		member.enter();
 		assertThrows(InvalidOperationException.class,
@@ -424,7 +421,7 @@ public class MemberTest {
 	  throws InvalidOperationException, InvalidInvocationException {
 		// Arrange
 		// Act
-		member = new Member("member1", new HealthClub("club1"), true);
+		member = new Member("member1", new HealthClub("club1"), true, 20);
 		member.setActive(true);
 		member.enter();
 		assertThrows(InvalidOperationException.class,
@@ -440,7 +437,7 @@ public class MemberTest {
 	  throws InvalidOperationException, InvalidInvocationException {
 		// Arrange
 		// Act
-		member = new Member("member1", new HealthClub("club1"), true);
+		member = new Member("member1", new HealthClub("club1"), true, 20);
 		member.setActive(true);
 		member.enter();
 		assertThrows(InvalidOperationException.class,
@@ -456,7 +453,7 @@ public class MemberTest {
 	  throws InvalidOperationException, InvalidInvocationException {
 		// Arrange
 		// Act
-		member = new Member("member1", new HealthClub("club1"), true);
+		member = new Member("member1", new HealthClub("club1"), true, 20);
 		member.setActive(true);
 		member.enter();
 		member.exit();
@@ -471,7 +468,7 @@ public class MemberTest {
 	  throws InvalidOperationException, InvalidInvocationException {
 		// Arrange
 		// Act
-		member = new Member("member1", new HealthClub("club1"), true);
+		member = new Member("member1", new HealthClub("club1"), true, 20);
 		GroupClass groupClass = new GroupClass(8, 2, 7, new HealthClub("club1"), 1, true);
 		member.setActive(true);
 		member.enter();
@@ -489,7 +486,7 @@ public class MemberTest {
 	  throws InvalidOperationException, InvalidInvocationException {
 		// Arrange
 		// Act
-		member = new Member("member1", new HealthClub("club1"), true);
+		member = new Member("member1", new HealthClub("club1"), true, 20);
 		GroupClass groupClass = new GroupClass(8, 2, 7, new HealthClub("club1"), 1, true);
 		member.setActive(true);
 		member.enter();
@@ -507,7 +504,7 @@ public class MemberTest {
 	  throws InvalidOperationException, InvalidInvocationException {
 		// Arrange
 		// Act
-		member = new Member("member1", new HealthClub("club1"), true);
+		member = new Member("member1", new HealthClub("club1"), true, 20);
 		GroupClass groupClass = new GroupClass(8, 2, 7, new HealthClub("club1"), 1, true);
 		member.setActive(true);
 		member.enter();
@@ -525,7 +522,7 @@ public class MemberTest {
 	  throws InvalidOperationException, InvalidInvocationException {
 		// Arrange
 		// Act
-		member = new Member("member1", new HealthClub("club1"), true);
+		member = new Member("member1", new HealthClub("club1"), true, 20);
 		GroupClass groupClass = new GroupClass(8, 2, 7, new HealthClub("club1"), 1, true);
 		member.setActive(true);
 		member.enter();
@@ -545,7 +542,7 @@ public class MemberTest {
 	  throws InvalidOperationException, InvalidInvocationException {
 		// Arrange
 		// Act
-		member = new Member("member1", new HealthClub("club1"), true);
+		member = new Member("member1", new HealthClub("club1"), true, 20);
 		GroupClass groupClass = new GroupClass(8, 2, 7, new HealthClub("club1"), 1, true);
 		member.setActive(true);
 		member.enter();
@@ -565,7 +562,7 @@ public class MemberTest {
 	  throws InvalidOperationException, InvalidInvocationException {
 		// Arrange
 		// Act
-		member = new Member("member1", new HealthClub("club1"), true);
+		member = new Member("member1", new HealthClub("club1"), true, 20);
 		GroupClass groupClass = new GroupClass(8, 2, 7, new HealthClub("club1"), 1, true);
 		member.setActive(true);
 		member.enter();
@@ -585,7 +582,7 @@ public class MemberTest {
 	  throws InvalidOperationException, InvalidInvocationException {
 		// Arrange
 		// Act
-		member = new Member("member1", new HealthClub("club1"), true);
+		member = new Member("member1", new HealthClub("club1"), true, 20);
 		GroupClass groupClass = new GroupClass(8, 2, 7, new HealthClub("club1"), 1, true);
 		member.setActive(true);
 		member.enter();
@@ -604,7 +601,7 @@ public class MemberTest {
 	  throws InvalidOperationException, InvalidInvocationException {
 		// Arrange
 		// Act
-		member = new Member("member1", new HealthClub("club1"), true);
+		member = new Member("member1", new HealthClub("club1"), true, 20);
 		GroupClass groupClass = new GroupClass(8, 2, 7, new HealthClub("club1"), 1, true);
 		member.setActive(true);
 		member.enter();
@@ -625,7 +622,7 @@ public class MemberTest {
 	  throws InvalidOperationException, InvalidInvocationException {
 		// Arrange
 		// Act
-		member = new Member("member1", new HealthClub("club1"), true);
+		member = new Member("member1", new HealthClub("club1"), true, 20);
 		GroupClass groupClass = new GroupClass(8, 2, 7, new HealthClub("club1"), 1, true);
 		member.setActive(true);
 		member.enter();
@@ -646,7 +643,7 @@ public class MemberTest {
 	  throws InvalidOperationException, InvalidInvocationException {
 		// Arrange
 		// Act
-		member = new Member("member1", new HealthClub("club1"), true);
+		member = new Member("member1", new HealthClub("club1"), true, 20);
 		GroupClass groupClass = new GroupClass(8, 2, 7, new HealthClub("club1"), 1, true);
 		member.setActive(true);
 		member.enter();
