@@ -1,9 +1,11 @@
 package healthclub;
 
+import healthclub.exceptions.InvalidInvocationException;
 import healthclub.exceptions.InvalidOperationException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Member {
 
@@ -15,28 +17,28 @@ public class Member {
 
 	private int age;
 
+	private int membershipTime;
+
 	private boolean atClub;
 
 	private boolean atGroupClass;
-
-	private List<GroupClass> enrolledGroupClasses;
 
 	public enum MemberStatus {ACTIVE, INACTIVE, SUSPENDED}
 
 	private MemberStatus status;
 
-	public Member(String name, HealthClub club, boolean goldenMember, int age)
+	public Member(String name, HealthClub club, boolean goldenMember, int age, int membershipTime)
 	  throws InvalidOperationException {
-		if (name == null || name.equals("") || club == null || age < 0) {
+		if (name == null || name.equals("") || club == null || age < 0 || membershipTime < 0) {
 			throw new InvalidOperationException();
 		}
 		this.name = name;
 		this.club = club;
 		this.goldenMember = goldenMember;
 		this.age = age;
+		this.membershipTime = membershipTime;
 		this.atClub = false;
 		this.atGroupClass = false;
-		this.enrolledGroupClasses = new ArrayList<>();
 		this.status = MemberStatus.SUSPENDED;
 	}
 
@@ -85,14 +87,16 @@ public class Member {
 	// returns the list of group classes of this member
 	public List<GroupClass> getGroupClasses() throws InvalidOperationException {
 		if (this.status != MemberStatus.SUSPENDED)
-			return this.enrolledGroupClasses;
+			return this.club.getGroupClasses().stream()
+					.filter(gc -> gc.getMembers().contains(this))
+					.collect(Collectors.toList());
 		else
 			throw new InvalidOperationException("Can not get enrolled group classes of suspended members!");
 	}
 
 	// participates in the specified group class if this member is enrolled in the concerned group class
 	public void participate(GroupClass groupClass) throws InvalidOperationException {
-		if (this.atClub && !this.atGroupClass && this.enrolledGroupClasses.contains(groupClass))
+		if (this.atClub && !this.atGroupClass && this.getGroupClasses().contains(groupClass))
 			this.atGroupClass = true;
 		else
 			throw new InvalidOperationException("Members can not participate in a class if they are not at the club or not enrolled on the group class or are already attending another class");
@@ -109,14 +113,16 @@ public class Member {
 
 	// enrolls in the specified group class . If the member is already enrolled, then it does nothing.
 	// Returns true if the member was is enrolled in the group class , false otherwise.
-	public boolean enroll(GroupClass gc) {
-		if (this.enrolledGroupClasses.contains(gc)) {
-			return true;
-		} else if (!atGroupClass && this.status == MemberStatus.ACTIVE) {
-			return this.enrolledGroupClasses.add(gc);
+	public boolean enroll(GroupClass gc) throws InvalidOperationException {
+		 if (atGroupClass || this.status != MemberStatus.ACTIVE) {
+			throw new InvalidOperationException();
 		}
-		return false;
-		// Missing exception throw ?? Dont know if it necessary.
+
+		try {
+			 return gc.enroll(this);
+		} catch (InvalidInvocationException e) {
+			throw new InvalidOperationException();
+		}
 	}
 
 	// activate/deactivate the membership of a inactive member
@@ -144,8 +150,15 @@ public class Member {
 
 	}
 
-
 	public int getAge() {
 		return age;
+	}
+
+	public int getMembershipTime() {
+		return membershipTime;
+	}
+
+	public void setMembershipTime(int membershipTime) {
+		this.membershipTime = membershipTime;
 	}
 }

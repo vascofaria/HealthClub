@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.LinkedList;
 
 import healthclub.exceptions.InvalidInvocationException;
+import healthclub.exceptions.InvalidOperationException;
 
 public class HealthClub {
 
@@ -45,15 +46,37 @@ public class HealthClub {
 	public void payMembershipCost(Member member) {}
 
 	// computes the monthly membership cost for the specified member
-	/*public float computeMembershipCost(Member m) {
+	public float computeMembershipCost(Member m) throws InvalidOperationException {
 		if (m.getStatus().equals(Member.MemberStatus.INACTIVE)) {
 			return 0;
 		} else {
-			if (m.getAge() == 0) {
-
+			if (m.getAge() <= 15) {
+				return 20;
+			} else if (15 < m.getAge() && m.getAge() < 65) {
+				if (m.getGroupClasses().size() <= 1) {
+					return 50;
+				} else if (m.getGroupClasses().size() == 2) {
+					return 60;
+				} else {
+					if (m.getMembershipTime() <= 2) {
+						return 70;
+					} else {
+						return 65;
+					}
+				}
+			} else {
+				if (m.getGroupClasses().size() <= 1) {
+					return 35;
+				} else {
+					if (m.getMembershipTime() <= 4) {
+						return 45;
+					} else {
+						return 40;
+					}
+				}
 			}
 		}
-	}*/
+	}
 
 	// returns the list of members
 	public List<Member> getMembers() {

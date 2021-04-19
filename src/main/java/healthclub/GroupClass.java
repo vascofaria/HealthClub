@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import java.util.stream.Collectors;
 
 import healthclub.exceptions.InvalidInvocationException;
+import healthclub.exceptions.InvalidOperationException;
 
 public class GroupClass {
 
@@ -70,28 +71,29 @@ public class GroupClass {
 
 	// enrolls a new member to this group class. Returns true if the member is enrolled
 	// in this class , false otherwise.
-	public boolean enroll(Member member) throws InvalidInvocationException {
-		boolean enrolled = false;
+	public boolean enroll(Member member) throws InvalidInvocationException, InvalidOperationException {
+		if (member.getAge() < this.getMinAge())
+			throw new InvalidInvocationException();
+
 		if (this.members.contains(member)) { return true; }
 
 		if (this.members.size() < this.getCapacity()) {
-			this.members.add(member);
-			enrolled = true;
-		} else {
-			if (this.isGolden()) {
-				List<Boolean> goldUsers = this.members.stream().map(Member::isGoldenMember).collect(Collectors.toList());
-				//if there are silver members enrolled in the group class
-				if (goldUsers.contains(false)) {
-					if (member.isGoldenMember()) {
-						Member memberToRemove = this.members.stream().filter(m -> !m.isGoldenMember()).findAny().get();
-						this.members.remove(memberToRemove);
-						this.members.add(member);
-						enrolled = true;
-					}
+			return this.members.add(member);
+		}
+
+		if (this.isGolden()) {
+			List<Boolean> goldUsers = this.members.stream().map(Member::isGoldenMember).collect(Collectors.toList());
+			//if there are silver members enrolled in the group class
+			if (goldUsers.contains(false)) {
+				if (member.isGoldenMember()) {
+					Member memberToRemove = this.members.stream().filter(m -> !m.isGoldenMember()).findAny().get();
+					this.members.remove(memberToRemove);
+					memberToRemove.getGroupClasses().remove(this);
+					return this.members.add(member);
 				}
 			}
 		}
-		return enrolled;
+		return false;
 	}
 
 	// accessor methods
