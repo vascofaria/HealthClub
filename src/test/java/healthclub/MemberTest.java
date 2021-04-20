@@ -467,6 +467,9 @@ public class MemberTest {
 	public void conformanceTest28()
 	  throws InvalidOperationException, InvalidInvocationException {
 		// Arrange
+		HealthClub club = new HealthClub("club1");
+		member = new Member("member1", club, true, 20, 5);
+		club.registerMember(member);
 		// Act
 		HealthClub club = new HealthClub("club1");
 		member = new Member("member1", club, true, 20, 5);
