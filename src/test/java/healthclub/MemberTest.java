@@ -468,8 +468,11 @@ public class MemberTest {
 	  throws InvalidOperationException, InvalidInvocationException {
 		// Arrange
 		// Act
-		member = new Member("member1", new HealthClub("club1"), true, 20, 5);
-		GroupClass groupClass = new GroupClass(8, 2, 7, new HealthClub("club1"), 1, true);
+		HealthClub club = new HealthClub("club1");
+		member = new Member("member1", club, true, 20, 5);
+		club.registerMember(member);
+		GroupClass groupClass = new GroupClass(8, 2, 7, club, 1, true);
+		club.registerGroupClass(groupClass);
 		member.setActive(true);
 		member.enter();
 		assertEquals(member.enroll(groupClass), true);

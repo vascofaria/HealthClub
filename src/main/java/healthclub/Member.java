@@ -44,7 +44,7 @@ public class Member {
 
 	// should be invoked when this member tries to enter the health club
 	public void enter() throws InvalidOperationException {
-		if (this.status == MemberStatus.ACTIVE)
+		if (this.status == MemberStatus.ACTIVE && !this.atClub)
 			this.atClub = true;
 		else
 			throw new InvalidOperationException("Non active members can not enter the club!");
