@@ -470,9 +470,9 @@ public class MemberTest {
 		HealthClub club = new HealthClub("club1");
 		member = new Member("member1", club, true, 20, 5);
 		club.registerMember(member);
-		// Act
 		GroupClass groupClass = new GroupClass(8, 2, 7, club, 1, true);
 		club.registerGroupClass(groupClass);
+		// Act
 		member.setActive(true);
 		member.enter();
 		assertEquals(member.enroll(groupClass), true);
