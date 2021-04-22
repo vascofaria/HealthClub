@@ -506,9 +506,12 @@ public class MemberTest {
 	public void conformanceTest30()
 	  throws InvalidOperationException, InvalidInvocationException {
 		// Arrange
+		// Arrange
+		HealthClub club = new HealthClub("club1");
+		member = new Member("member1", club, true, 20, 5);
+		club.registerMember(member);
 		// Act
-		member = new Member("member1", new HealthClub("club1"), true, 20, 5);
-		GroupClass groupClass = new GroupClass(8, 2, 7, new HealthClub("club1"), 1, true);
+		GroupClass groupClass = new GroupClass(8, 2, 7, club, 1, true);
 		member.setActive(true);
 		member.enter();
 		assertThrows(InvalidOperationException.class,
@@ -524,9 +527,12 @@ public class MemberTest {
 	public void conformanceTest31()
 	  throws InvalidOperationException, InvalidInvocationException {
 		// Arrange
+		HealthClub club = new HealthClub("club1");
+		member = new Member("member1", club, true, 20, 5);
+		club.registerMember(member);
 		// Act
-		member = new Member("member1", new HealthClub("club1"), true, 20, 5);
-		GroupClass groupClass = new GroupClass(8, 2, 7, new HealthClub("club1"), 1, true);
+		GroupClass groupClass = new GroupClass(8, 2, 7, club, 1, true);
+		club.registerGroupClass(groupClass);
 		member.setActive(true);
 		member.enter();
 		assertEquals(member.enroll(groupClass), true);
@@ -544,9 +550,12 @@ public class MemberTest {
 	public void conformanceTest32()
 	  throws InvalidOperationException, InvalidInvocationException {
 		// Arrange
+		HealthClub club = new HealthClub("club1");
+		member = new Member("member1", club, true, 20, 5);
+		club.registerMember(member);
 		// Act
-		member = new Member("member1", new HealthClub("club1"), true, 20, 5);
-		GroupClass groupClass = new GroupClass(8, 2, 7, new HealthClub("club1"), 1, true);
+		GroupClass groupClass = new GroupClass(8, 2, 7, club, 1, true);
+		club.registerGroupClass(groupClass);
 		member.setActive(true);
 		member.enter();
 		assertEquals(member.enroll(groupClass), true);
@@ -564,9 +573,12 @@ public class MemberTest {
 	public void conformanceTest33()
 	  throws InvalidOperationException, InvalidInvocationException {
 		// Arrange
+		HealthClub club = new HealthClub("club1");
+		member = new Member("member1", club, true, 20, 5);
+		club.registerMember(member);
 		// Act
-		member = new Member("member1", new HealthClub("club1"), true, 20, 5);
-		GroupClass groupClass = new GroupClass(8, 2, 7, new HealthClub("club1"), 1, true);
+		GroupClass groupClass = new GroupClass(8, 2, 7, club, 1, true);
+		club.registerGroupClass(groupClass);
 		member.setActive(true);
 		member.enter();
 		assertEquals(member.enroll(groupClass), true);
@@ -584,9 +596,12 @@ public class MemberTest {
 	public void conformanceTest34()
 	  throws InvalidOperationException, InvalidInvocationException {
 		// Arrange
+		HealthClub club = new HealthClub("club1");
+		member = new Member("member1", club, true, 20, 5);
+		club.registerMember(member);
 		// Act
-		member = new Member("member1", new HealthClub("club1"), true, 20, 5);
-		GroupClass groupClass = new GroupClass(8, 2, 7, new HealthClub("club1"), 1, true);
+		GroupClass groupClass = new GroupClass(8, 2, 7, club, 1, true);
+		club.registerGroupClass(groupClass);
 		member.setActive(true);
 		member.enter();
 		assertEquals(member.enroll(groupClass), true);
@@ -603,9 +618,12 @@ public class MemberTest {
 	public void conformanceTest35()
 	  throws InvalidOperationException, InvalidInvocationException {
 		// Arrange
+		HealthClub club = new HealthClub("club1");
+		member = new Member("member1", club, true, 20, 5);
+		club.registerMember(member);
 		// Act
-		member = new Member("member1", new HealthClub("club1"), true, 20, 5);
-		GroupClass groupClass = new GroupClass(8, 2, 7, new HealthClub("club1"), 1, true);
+		GroupClass groupClass = new GroupClass(8, 2, 7, club, 1, true);
+		club.registerGroupClass(groupClass);
 		member.setActive(true);
 		member.enter();
 		assertEquals(member.enroll(groupClass), true);
@@ -624,9 +642,12 @@ public class MemberTest {
 	public void conformanceTest36()
 	  throws InvalidOperationException, InvalidInvocationException {
 		// Arrange
+		HealthClub club = new HealthClub("club1");
+		member = new Member("member1", club, true, 20, 5);
+		club.registerMember(member);
 		// Act
-		member = new Member("member1", new HealthClub("club1"), true, 20, 5);
-		GroupClass groupClass = new GroupClass(8, 2, 7, new HealthClub("club1"), 1, true);
+		GroupClass groupClass = new GroupClass(8, 2, 7, club, 1, true);
+		club.registerGroupClass(groupClass);
 		member.setActive(true);
 		member.enter();
 		assertEquals(member.enroll(groupClass), true);
@@ -645,9 +666,12 @@ public class MemberTest {
 	public void conformanceTest37()
 	  throws InvalidOperationException, InvalidInvocationException {
 		// Arrange
+		HealthClub club = new HealthClub("club1");
+		member = new Member("member1", club, true, 20, 5);
+		club.registerMember(member);
 		// Act
-		member = new Member("member1", new HealthClub("club1"), true, 20, 5);
-		GroupClass groupClass = new GroupClass(8, 2, 7, new HealthClub("club1"), 1, true);
+		GroupClass groupClass = new GroupClass(8, 2, 7, club, 1, true);
+		club.registerGroupClass(groupClass);
 		member.setActive(true);
 		member.enter();
 		assertEquals(member.enroll(groupClass), true);
